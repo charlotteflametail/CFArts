@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Charlotte Flametail Arts LLC</title>
+<meta name="description" content="Handmade beaded jewelry and art prints by Charlotte Flametail. Fall and Halloween collections, available for a limited time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+SC:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0610; --ink:#150c20; --plum-deep:#241333; --plum:#3a1f54;
+    --amethyst:#8a5fc2; --amethyst-2:#b48cdb; --lavender:#e3d7f2; --ash:#cdc3d9;
+    --line:rgba(180,140,219,0.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--void);color:var(--ash);font-family:'EB Garamond',serif;font-size:18px;line-height:1.7;
+    background-image:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(138,95,194,.22),transparent 60%)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .eyebrow{font-family:'Cormorant SC',serif;letter-spacing:.28em;text-transform:uppercase;font-size:.82rem;color:var(--amethyst-2)}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,5vw,4rem);
+    border-bottom:1px solid var(--line);flex-wrap:wrap;gap:.8rem}
+  .wordmark{font-family:'Cormorant SC',serif;letter-spacing:.12em;font-size:1.05rem;color:var(--lavender)}
+  nav ul{list-style:none;display:flex;gap:clamp(1rem,3vw,2.2rem)}
+  nav a{font-family:'Cormorant SC',serif;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem;padding-bottom:4px;
+    border-bottom:1px solid transparent;transition:.3s}
+  nav a:hover,nav a.on{color:var(--lavender);border-color:var(--amethyst-2)}
+
+  .hero{text-align:center;padding:4rem 1.5rem 2.5rem;max-width:760px;margin:0 auto}
+  .hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(2rem,6vw,3.4rem);color:var(--lavender);
+    text-shadow:0 0 36px rgba(138,95,194,.45);margin:.7rem 0 1rem;line-height:1.1}
+  .hero p{font-style:italic}
+
+  .banner{max-width:680px;margin:1rem auto 0;padding:0 1.2rem}
+  .banner-inner{position:relative;border:1px solid var(--line);overflow:hidden;border-radius:2px}
+  .banner-inner img{width:100%;height:auto}
+  .banner-cap{position:absolute;inset:auto 0 0 0;padding:1.4rem 1.6rem;
+    background:linear-gradient(to top,rgba(10,6,16,.94),transparent);text-align:center}
+  .banner-cap strong{font-family:'Cinzel Decorative',serif;color:var(--lavender);font-weight:400;font-size:1.25rem;display:block}
+  .banner-cap span{font-style:italic;font-size:.95rem}
+
+  main{max-width:1100px;margin:0 auto;padding:3rem 1.2rem 5rem}
+  .section-title{text-align:center;margin-bottom:2rem}
+  .section-title h2{font-family:'Cinzel Decorative',serif;color:var(--lavender);font-size:clamp(1.5rem,3.5vw,2.1rem);margin-top:.4rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem}
+  .card{border:1px solid var(--line);background:linear-gradient(160deg,var(--plum-deep),var(--ink) 80%);
+    display:flex;flex-direction:column;border-radius:2px;transition:border-color .3s,transform .3s}
+  .card:hover{border-color:var(--amethyst-2);transform:translateY(-3px)}
+  .thumb{aspect-ratio:1/1;background:radial-gradient(circle at 30% 25%,rgba(180,140,219,.25),transparent 60%),var(--plum-deep);
+    display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb svg{opacity:.45}
+  .body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+  .tag{font-family:'Cormorant SC',serif;letter-spacing:.2em;font-size:.72rem;text-transform:uppercase;color:var(--amethyst-2)}
+  .card h3{font-family:'Cormorant SC',serif;letter-spacing:.05em;font-size:1.25rem;color:var(--lavender);font-weight:600;line-height:1.25}
+  .card p{font-size:.95rem;line-height:1.5;flex:1}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-top:.5rem}
+  .price{font-family:'Cinzel Decorative',serif;color:var(--lavender);font-size:1.15rem}
+  .btn{font-family:'Cormorant SC',serif;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;padding:.7rem 1.2rem;
+    background:linear-gradient(160deg,var(--amethyst),#5a3690);color:var(--void);border:0;cursor:pointer;border-radius:1px;transition:.3s;font-weight:600}
+  .btn:hover{box-shadow:0 0 22px rgba(138,95,194,.55);transform:translateY(-1px)}
+  .note{max-width:700px;margin:3rem auto 0;text-align:center;padding:1.4rem;border:1px solid var(--line);
+    background:rgba(58,31,84,.25);font-size:.95rem}
+  .note a{color:var(--amethyst-2);border-bottom:1px solid var(--amethyst-2)}
+
+  .tabs{display:flex;justify-content:center;gap:.4rem;margin:2.2rem auto 0;padding:0 1rem;flex-wrap:wrap}
+  .tab{font-family:'Cormorant SC',serif;letter-spacing:.2em;text-transform:uppercase;font-size:.95rem;padding:.8rem 2rem;
+    background:transparent;color:var(--ash);border:1px solid var(--line);cursor:pointer;transition:.3s;border-radius:1px}
+  .tab:hover{color:var(--lavender);border-color:var(--amethyst-2)}
+  .tab[aria-selected="true"]{background:linear-gradient(160deg,var(--amethyst),#5a3690);color:var(--void);border-color:transparent;font-weight:600}
+  .panel[hidden]{display:none}
+  .panel-intro{text-align:center;max-width:620px;margin:0 auto 2rem;font-style:italic}
+  .thumb.art{aspect-ratio:4/5}
+  .thumb.art img{object-fit:contain;background:#0a0610}
+  .card.bundle{border-style:dashed}
+
+  .colors{margin:.3rem 0 .2rem}
+  .colors-label{font-family:'Cormorant SC',serif;letter-spacing:.16em;font-size:.72rem;text-transform:uppercase;color:var(--amethyst-2);display:block;margin-bottom:.4rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem}
+  .chip{display:inline-flex;align-items:center;gap:.4rem;font-family:'EB Garamond',serif;font-size:.85rem;color:var(--ash);
+    background:transparent;border:1px solid var(--line);padding:.25rem .6rem .25rem .3rem;border-radius:999px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--amethyst-2);color:var(--lavender)}
+  .chip[aria-pressed="true"]{border-color:var(--lavender);background:rgba(138,95,194,.3);color:var(--lavender)}
+  .dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(227,215,242,.5);display:inline-block}
+  .hint{font-size:.8rem;font-style:italic;color:var(--amethyst-2);min-height:1.2em;margin-top:.3rem}
+  .btn.need{opacity:.55}
+  footer{text-align:center;padding:2.2rem 1rem;border-top:1px solid var(--line);font-size:.82rem;color:rgba(205,195,217,.55)}
+  footer a{color:var(--amethyst-2)}
+  @media(max-width:520px){nav ul{gap:.9rem}.grid{grid-template-columns:1fr 1fr;gap:.9rem}.body{padding:.8rem}.card h3{font-size:1.05rem}.row{flex-direction:column;align-items:stretch;text-align:center}}
+  @media(max-width:360px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="wordmark">Charlotte&nbsp;Flametail</a>
+  <nav><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="on">Shop</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul></nav>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">Charlotte Flametail Arts LLC</span>
+  <h1>The Shop</h1>
+  <p>Handmade beaded jewelry and art prints. Every piece is made in small batches.</p>
+</section>
+
+<div class="tabs" role="tablist" aria-label="Shop sections">
+  <button class="tab" role="tab" id="tab-jewelry" aria-controls="panel-jewelry" aria-selected="true" data-tab="jewelry">Jewelry</button>
+  <button class="tab" role="tab" id="tab-art" aria-controls="panel-art" aria-selected="false" data-tab="art">Art</button>
+</div>
+
+<div class="panel" id="panel-jewelry" role="tabpanel" aria-labelledby="tab-jewelry">
+  <div class="banner"><div class="banner-inner">
+    <img src="images/seasonal-collection.jpg" alt="Beaded bracelets from the Fall and Halloween collections">
+    <div class="banner-cap">
+      <strong>Fall &amp; Halloween Collections</strong>
+      <span>Limited time only. When they're gone, they're gone.</span>
+    </div>
+  </div></div>
+  <main>
+    <div class="section-title"><span class="eyebrow">Handmade beaded jewelry</span><h2>Jewelry</h2></div>
+    <div class="grid" id="grid-jewelry"></div>
+  </main>
+</div>
+
+<div class="panel" id="panel-art" role="tabpanel" aria-labelledby="tab-art" hidden>
+  <main>
+    <div class="section-title"><span class="eyebrow">Original artwork</span><h2>Art</h2></div>
+    <p class="panel-intro">Prints of Charlotte's original art. Each print is 8.5 &times; 11 on luster photo paper.</p>
+    <div class="grid" id="grid-art"></div>
+  </main>
+</div>
+
+<main style="padding-top:0">
+  <div class="note">
+    Prefer to order another way, or want something custom? Email
+    <a href="mailto:charlotteflametail@gmail.com">charlotteflametail@gmail.com</a>
+    or message <a href="https://www.instagram.com/charlotteflametail" target="_blank" rel="noopener">@charlotteflametail</a> on Instagram.
+  </div>
+</main>
+
+<footer>&copy; <span id="yr"></span> Charlotte Flametail Arts LLC &middot;
+  <a href="https://www.instagram.com/charlotteflametail" target="_blank" rel="noopener">@charlotteflametail</a></footer>
+
+<script>
+/* ============================================================
+   EDIT THIS SECTION TO MANAGE THE STORE
+   To ADD a piece of art: copy one { ... }, line inside ART, paste it
+   below the last one, and change the title, price, photo and link.
+   - link: the product's Stripe (or PayPal/Square) payment link.
+           While empty, the button opens a pre-filled email order.
+   - img:  photo path, e.g. "images/art/moonlit-fox.jpg"
+   - tag:  small label above the name (optional)
+   - colors: optional list of color choices for the buyer, e.g.
+       colors:[ {name:"Red", hex:"#c0392b"}, {name:"Gold", hex:"#d4a017", link:"https://buy.stripe.com/..."} ]
+       pick:  how many colors the buyer chooses (default 1, use 2 for two-color bracelets)
+       A color can have its own "link" (handy for tracking stock per color); otherwise the
+       product's main link is used and the chosen color is attached to the order.
+   ============================================================ */
+const STORE_EMAIL = "charlotteflametail@gmail.com";
+
+const JEWELRY = [
+  { name:"Fall Collection Bracelet",      tag:"Limited · Fall",      price:20, link:"", img:"", pick:1,
+    colors:[{name:"Red",hex:"#b3261e"},{name:"Orange",hex:"#e0701f"},{name:"Gold",hex:"#d4a017"},{name:"Yellow",hex:"#e8c93a"}],
+    desc:"Beaded bracelet in autumn reds, oranges and golds with enamel maple-leaf charms." },
+  { name:"Halloween Collection Bracelet", tag:"Limited · Halloween", price:20, link:"", img:"", pick:1,
+    colors:[{name:"Purple",hex:"#6b3fa0"},{name:"Black",hex:"#15101c"},{name:"Orange",hex:"#e0701f"}],
+    desc:"Purple and black beaded bracelet with silver bat and skull charms." },
+  { name:"Frangipani Beaded Bracelet",    tag:"Bracelet",            price:20, link:"", img:"", pick:2,
+    colors:[{name:"Pink",hex:"#e58fb8"},{name:"Yellow",hex:"#f0d255"},{name:"White",hex:"#f4f1ea"},{name:"Purple",hex:"#8a5fc2"},{name:"Blue",hex:"#4a82c4"}],
+    desc:"Beaded bracelet with alternating handmade clay frangipani flowers." },
+  { name:"Frangipani Earrings",           tag:"Earrings",            price:10, link:"", img:"",
+    desc:"Beaded earrings with clay frangipani flowers, to match the bracelets." }
+];
+
+const ART = [
+  { name:"Fairy Caps",   tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Fairy Caps.jpg", desc:"Three glowing purple mushrooms rise from a moonlit forest floor, their golden gills lit like tiny lanterns against the dark water and ferns." },
+  { name:"Forbidden Fruit",   tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Forbidden Fruit.jpg", desc:"Mossy stepping stones wind through a violet watercolor forest toward a single golden-stemmed toadstool, glowing quietly at the end of the path." },
+  { name:"Phoenix Reborn", tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Phoenix Reborn.jpg", desc:"Out of ash and midnight it climbs, crowned in flame and trailing sparks, to begin again." },
+  { name:"Walk in the Woods", tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Walk in the Woods.jpg", desc:"A dirt path, dappled with patches of golden light, runs between towering dark trunks toward a small arch of blue sky at the far end of the green canopy." },
+  /* add more pieces here, one per line */
+  { name:"Any 2 Prints",           tag:"Bundle · Save $5", price:35, link:"", img:"", bundle:true,
+    desc:"Pick any two prints for $35. Tell us your choices at checkout or by email." }
+];
+/* ============================================================ */
+
+const icon = '<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#b48cdb" stroke-width="1"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"/></svg>';
+
+function render(list, gridId, isArt){
+  const grid = document.getElementById(gridId);
+  list.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card" + (p.bundle ? " bundle" : "");
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb" + (isArt ? " art" : "");
+    if (p.img) { const im = document.createElement("img"); im.src = p.img; im.alt = p.name; im.loading = "lazy"; thumb.appendChild(im); }
+    else thumb.innerHTML = icon;
+
+    const action = document.createElement("a");
+    action.className = "btn";
+    const chosen = [];
+    const need = p.colors ? (p.pick || 1) : 0;
+
+    function colorLabel(){ return chosen.join(" + "); }
+    function buildHref(){
+      const label = colorLabel();
+      const colorObj = p.colors && chosen.length === 1 ? p.colors.find(c => c.name === chosen[0]) : null;
+      const base = (colorObj && colorObj.link) || p.link;
+      if (base) {
+        if (!label) return base;
+        const ref = (p.name + " " + label).replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 190);
+        return base + (base.includes("?") ? "&" : "?") + "client_reference_id=" + encodeURIComponent(ref);
+      }
+      const subject = encodeURIComponent("Order: " + p.name + (label ? " (" + label + ")" : ""));
+      const msg = encodeURIComponent("Hi Charlotte,\n\nI'd like to order: " + p.name + " ($" + p.price + ")\n" +
+        (label ? "Color(s): " + label + "\n" : "") + "Quantity:\nShipping name & address:\n\nThank you!");
+      return "mailto:" + STORE_EMAIL + "?subject=" + subject + "&body=" + msg;
+    }
+    function refresh(){
+      const ready = chosen.length === need;
+      const hasLink = !!(p.link || (p.colors && p.colors.some(c => c.link)));
+      action.textContent = hasLink ? "Buy now" : "Order";
+      action.href = ready ? buildHref() : "#";
+      if (hasLink && ready) { action.target = "_blank"; action.rel = "noopener"; } else { action.removeAttribute("target"); }
+      action.classList.toggle("need", !ready);
+      if (hint) hint.textContent = ready ? "" : (need === 1 ? "Choose a color" : "Choose " + need + " colors");
+    }
+    action.addEventListener("click", e => {
+      if (chosen.length !== need) { e.preventDefault(); if (hint) hint.textContent = need === 1 ? "Please choose a color first" : "Please choose " + need + " colors first"; }
+    });
+
+    let hint = null, colorsEl = null;
+    if (p.colors) {
+      colorsEl = document.createElement("div");
+      colorsEl.className = "colors";
+      colorsEl.innerHTML = '<span class="colors-label"></span><div class="chips"></div><div class="hint"></div>';
+      colorsEl.querySelector(".colors-label").textContent = need === 1 ? "Color" : "Choose " + need + " colors";
+      hint = colorsEl.querySelector(".hint");
+      const chips = colorsEl.querySelector(".chips");
+      p.colors.forEach(c => {
+        const chip = document.createElement("button");
+        chip.type = "button"; chip.className = "chip"; chip.setAttribute("aria-pressed", "false");
+        chip.innerHTML = '<span class="dot"></span><span class="nm"></span>';
+        chip.querySelector(".dot").style.background = c.hex || "#888";
+        chip.querySelector(".nm").textContent = c.name;
+        chip.addEventListener("click", () => {
+          const i = chosen.indexOf(c.name);
+          if (i >= 0) chosen.splice(i, 1);
+          else { if (chosen.length >= need) chosen.shift(); chosen.push(c.name); }
+          chips.querySelectorAll(".chip").forEach(ch => ch.setAttribute("aria-pressed", chosen.includes(ch.querySelector(".nm").textContent) ? "true" : "false"));
+          refresh();
+        });
+        chips.appendChild(chip);
+      });
+    }
+
+    const body = document.createElement("div");
+    body.className = "body";
+    body.innerHTML = '<span class="tag"></span><h3></h3><p></p><div class="row"><span class="price"></span></div>';
+    body.querySelector(".tag").textContent = p.tag || "";
+    body.querySelector("h3").textContent = p.name;
+    body.querySelector("p").textContent = p.desc || "";
+    body.querySelector(".price").textContent = "$" + p.price;
+    if (colorsEl) body.insertBefore(colorsEl, body.querySelector(".row"));
+    body.querySelector(".row").appendChild(action);
+    refresh();
+
+    card.appendChild(thumb); card.appendChild(body); grid.appendChild(card);
+  });
+}
+render(JEWELRY, "grid-jewelry", false);
+render(ART, "grid-art", true);
+
+/* Tabs (the link shop.html#art opens the Art tab directly) */
+function showTab(name){
+  ["jewelry","art"].forEach(t => {
+    document.getElementById("panel-" + t).hidden = (t !== name);
+    document.getElementById("tab-" + t).setAttribute("aria-selected", t === name ? "true" : "false");
+  });
+}
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+  showTab(b.dataset.tab);
+  try { history.replaceState(null, "", "#" + b.dataset.tab); } catch(e) {}
+}));
+showTab(location.hash === "#art" ? "art" : "jewelry");
+window.addEventListener("hashchange", () => showTab(location.hash === "#art" ? "art" : "jewelry"));
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
