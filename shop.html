@@ -149,46 +149,15 @@
 <footer>&copy; <span id="yr"></span> Charlotte Flametail Arts LLC &middot;
   <a href="https://www.instagram.com/charlotteflametail" target="_blank" rel="noopener">@charlotteflametail</a></footer>
 
+<script src="art.js"></script>
+<script src="jewelry.js"></script>
 <script>
-/* ============================================================
-   EDIT THIS SECTION TO MANAGE THE STORE
-   To ADD a piece of art: copy one { ... }, line inside ART, paste it
-   below the last one, and change the title, price, photo and link.
-   - link: the product's Stripe (or PayPal/Square) payment link.
-           While empty, the button opens a pre-filled email order.
-   - img:  photo path, e.g. "images/art/moonlit-fox.jpg"
-   - tag:  small label above the name (optional)
-   - colors: optional list of color choices for the buyer, e.g.
-       colors:[ {name:"Red", hex:"#c0392b"}, {name:"Gold", hex:"#d4a017", link:"https://buy.stripe.com/..."} ]
-       pick:  how many colors the buyer chooses (default 1, use 2 for two-color bracelets)
-       A color can have its own "link" (handy for tracking stock per color); otherwise the
-       product's main link is used and the chosen color is attached to the order.
-   ============================================================ */
+/* Jewelry is edited in jewelry.js and art in art.js. Only the order email lives here. */
 const STORE_EMAIL = "charlotteflametail@gmail.com";
 
-const JEWELRY = [
-  { name:"Fall Collection Bracelet",      tag:"Limited · Fall",      price:20, link:"", img:"", pick:1,
-    colors:[{name:"Red",hex:"#b3261e"},{name:"Orange",hex:"#e0701f"},{name:"Gold",hex:"#d4a017"},{name:"Yellow",hex:"#e8c93a"}],
-    desc:"Beaded bracelet in autumn reds, oranges and golds with enamel maple-leaf charms." },
-  { name:"Halloween Collection Bracelet", tag:"Limited · Halloween", price:20, link:"", img:"", pick:1,
-    colors:[{name:"Purple",hex:"#6b3fa0"},{name:"Black",hex:"#15101c"},{name:"Orange",hex:"#e0701f"}],
-    desc:"Purple and black beaded bracelet with silver bat and skull charms." },
-  { name:"Frangipani Beaded Bracelet",    tag:"Bracelet",            price:20, link:"", img:"", pick:2,
-    colors:[{name:"Pink",hex:"#e58fb8"},{name:"Yellow",hex:"#f0d255"},{name:"White",hex:"#f4f1ea"},{name:"Purple",hex:"#8a5fc2"},{name:"Blue",hex:"#4a82c4"}],
-    desc:"Beaded bracelet with alternating handmade clay frangipani flowers." },
-  { name:"Frangipani Earrings",           tag:"Earrings",            price:10, link:"", img:"",
-    desc:"Beaded earrings with clay frangipani flowers, to match the bracelets." }
-];
+/* JEWELRY list lives in jewelry.js (edit jewelry there). */
 
-const ART = [
-  { name:"Fairy Caps",   tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Fairy Caps.jpg", desc:"Three glowing purple mushrooms rise from a moonlit forest floor, their golden gills lit like tiny lanterns against the dark water and ferns." },
-  { name:"Forbidden Fruit",   tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Forbidden Fruit.jpg", desc:"Mossy stepping stones wind through a violet watercolor forest toward a single golden-stemmed toadstool, glowing quietly at the end of the path." },
-  { name:"Phoenix Reborn", tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Phoenix Reborn.jpg", desc:"Out of ash and midnight it climbs, crowned in flame and trailing sparks, to begin again." },
-  { name:"Walk in the Woods", tag:"Print · 8.5 × 11", price:20, link:"", img:"images/art/Walk in the Woods.jpg", desc:"A dirt path, dappled with patches of golden light, runs between towering dark trunks toward a small arch of blue sky at the far end of the green canopy." },
-  /* add more pieces here, one per line */
-  { name:"Any 2 Prints",           tag:"Bundle · Save $5", price:35, link:"", img:"", bundle:true,
-    desc:"Pick any two prints for $35. Tell us your choices at checkout or by email." }
-];
+/* ART list lives in art.js (edit art there). */
 /* ============================================================ */
 
 const icon = '<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#b48cdb" stroke-width="1"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z"/></svg>';
