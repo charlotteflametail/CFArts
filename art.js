@@ -14,7 +14,7 @@ const ART = [
   { name:"Starlit Raven", tag:"Print · 8.5 × 11", price:20, link:"https://buy.stripe.com/9B6bJ29LG4KCfd34Q2djO05", img:"images/art/Starlit Raven.jpg", desc:"A raven keeps watch from its mossy perch beneath a crescent moon, its feathers shot through with blue and violet against a glittering midnight sky." },
   { name:"Luna Moth", tag:"Print · 8.5 × 11", price:20, link:"https://buy.stripe.com/cNi8wQ7Dy90S7KB82edjO06", img:"images/art/Luna Moth.jpg", desc:"Moon-green wings, glittering veins, and lettering straight out of a medieval manuscript." },
   { name:"Flower Garden", tag:"Print · 8.5 × 11", price:20, link:"https://buy.stripe.com/bJe5kE2je6SKd4V2HUdjO07", img:"images/art/Flower Garden.jpg", desc:"Somewhere between a greenhouse and a fairy tale, every bloom here grows a little larger, and a little stranger, than life." },
-  { name:"I See You", tag:"Print · 8.5 × 11", price:20, link:"https://buy.stripe.com/8x29AUaPKa4W2qh5U6djO08", img:"images/art/I See You.jpg", desc:"Out of the dark, two emerald eyes. You didn't see it coming, but it saw you."f },
+  { name:"I See You", tag:"Print · 8.5 × 11", price:20, link:"https://buy.stripe.com/8x29AUaPKa4W2qh5U6djO08", img:"images/art/I See You.jpg", desc:"Out of the dark, two emerald eyes. You didn't see it coming, but it saw you." },
   { name:"Sea Turtle", tag:"Print · 8.5 × 11", price:20, link:"https://buy.stripe.com/8x2bJ2f607WO6GxgyKdjO09", img:"images/art/Sea Turtle.jpg", desc:"Older than the tides it rides, the turtle moves through sunlit shallows as if time had never asked it to hurry." },
     /* add more pieces here, one per line */
   { name:"Any 2 Prints", tag:"Bundle · Save $5", price:35, link:"", img:"", bundle:true,
