@@ -88,6 +88,27 @@
   .dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(227,215,242,.5);display:inline-block}
   .hint{font-size:.8rem;font-style:italic;color:var(--amethyst-2);min-height:1.2em;margin-top:.3rem}
   .btn.need{opacity:.55}
+
+  .cartbtn{font-family:'Cormorant SC',serif;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem;background:transparent;color:var(--ash);border:1px solid var(--line);padding:.35rem .9rem;cursor:pointer;transition:.3s}
+  .cartbtn:hover{color:var(--lavender);border-color:var(--amethyst-2)}
+  #drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:var(--ink);border-left:1px solid var(--line);z-index:50;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s}
+  #drawer.open{transform:none}
+  #scrim{position:fixed;inset:0;background:rgba(10,6,16,.6);z-index:40}
+  .dh{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.3rem;border-bottom:1px solid var(--line)}
+  .dh h2{font-family:'Cinzel Decorative',serif;color:var(--lavender);font-size:1.2rem;font-weight:400}
+  .x{background:none;border:0;color:var(--ash);font-size:1.6rem;cursor:pointer;line-height:1}
+  #items{flex:1;overflow-y:auto;padding:.6rem 1.3rem}
+  .it{display:flex;justify-content:space-between;gap:.8rem;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.95rem;line-height:1.4}
+  .it b{color:var(--lavender);font-weight:500;display:block}
+  .it small{color:var(--amethyst-2)}
+  .qty{display:flex;align-items:center;gap:.5rem;margin-top:.3rem}
+  .qty button{width:26px;height:26px;background:transparent;border:1px solid var(--line);color:var(--lavender);cursor:pointer}
+  .df{padding:1.1rem 1.3rem;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.5rem;font-size:.95rem}
+  .df select{background:var(--plum-deep);color:var(--lavender);border:1px solid var(--line);padding:.5rem;font:inherit}
+  .df .tot{display:flex;justify-content:space-between;color:var(--lavender)}
+  .df .sm{font-size:.8rem;font-style:italic;color:var(--amethyst-2)}
+  #cerr{color:#e8a0a0;font-size:.85rem;min-height:1.1em}
+  .btn:disabled{opacity:.5;cursor:wait}
   footer{text-align:center;padding:2.2rem 1rem;border-top:1px solid var(--line);font-size:.82rem;color:rgba(205,195,217,.55)}
   footer a{color:var(--amethyst-2)}
   @media(max-width:520px){nav ul{gap:.9rem}.grid{grid-template-columns:1fr 1fr;gap:.9rem}.body{padding:.8rem}.card h3{font-size:1.05rem}.row{flex-direction:column;align-items:stretch;text-align:center}}
@@ -102,6 +123,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="shop.html" class="on">Shop</a></li>
     <li><a href="index.html#contact">Contact</a></li>
+    <li><button class="cartbtn" id="cartbtn" type="button">Cart (<span id="cartct">0</span>)</button></li>
   </ul></nav>
 </header>
 
@@ -148,6 +170,24 @@
 
 <footer>&copy; <span id="yr"></span> Charlotte Flametail Arts LLC &middot;
   <a href="https://www.instagram.com/charlotteflametail" target="_blank" rel="noopener">@charlotteflametail</a></footer>
+
+
+<div id="scrim" hidden></div>
+<aside id="drawer" aria-label="Shopping cart" aria-hidden="true">
+  <div class="dh"><h2>Your cart</h2><button class="x" id="cclose" type="button" aria-label="Close cart">&times;</button></div>
+  <div id="items"></div>
+  <div class="df">
+    <label for="region">Ship to</label>
+    <select id="region"><option value="us">United States</option><option value="intl">Outside the United States</option></select>
+    <div class="tot"><span>Items</span><span id="csub">$0</span></div>
+    <div class="tot"><span>Shipping</span><span id="cship">$0</span></div>
+    <div class="tot"><strong>Total</strong><strong id="ctot">$0</strong></div>
+    <div class="sm" id="cnote"></div>
+    <div id="cerr" role="alert"></div>
+    <button class="btn" id="checkout" type="button">Checkout</button>
+  </div>
+</aside>
+<div class="note" id="paid" hidden style="margin:1rem auto">Thank you! Your order is in and a receipt is on its way to your email.</div>
 
 <script src="art.js"></script>
 <script src="jewelry.js"></script>
@@ -196,13 +236,14 @@ function render(list, gridId, isArt){
     function refresh(){
       const ready = chosen.length === need;
       const hasLink = !!(p.link || (p.colors && p.colors.some(c => c.link)));
-      action.textContent = hasLink ? "Buy now" : "Order";
-      action.href = ready ? buildHref() : "#";
-      if (hasLink && ready) { action.target = "_blank"; action.rel = "noopener"; } else { action.removeAttribute("target"); }
+      if (p.priceId) { action.textContent = "Add to cart"; action.href = "#"; }
+      else { action.textContent = hasLink ? "Buy now" : "Order"; action.href = ready ? buildHref() : "#"; }
+      if (!p.priceId && hasLink && ready) { action.target = "_blank"; action.rel = "noopener"; } else { action.removeAttribute("target"); }
       action.classList.toggle("need", !ready);
       if (hint) hint.textContent = ready ? "" : (need === 1 ? "Choose a color" : "Choose " + need + " colors");
     }
     action.addEventListener("click", e => {
+      if (p.priceId && chosen.length === need) { e.preventDefault(); addToCart(p, colorLabel()); return; }
       if (chosen.length !== need) { e.preventDefault(); if (hint) hint.textContent = need === 1 ? "Please choose a color first" : "Please choose " + need + " colors first"; }
     });
 
@@ -261,6 +302,77 @@ document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () =>
 }));
 showTab(location.hash === "#art" ? "art" : "jewelry");
 window.addEventListener("hashchange", () => showTab(location.hash === "#art" ? "art" : "jewelry"));
+
+
+/* ---------- Cart ---------- */
+/* After deploying worker.js, paste its address here. */
+const WORKER_URL = "https://shop-checkout.charlotteflametail.workers.dev/";
+/* Shipping in dollars: first item, then each additional item. Keep these the same as SHIPPING in worker.js. */
+const SHIP = { us:{first:5, extra:1, freeOver:60}, intl:{first:15, extra:3} };
+const $ = id => document.getElementById(id);
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem("cfa_cart") || "[]"); } catch(e) {}
+function saveCart(){ try { localStorage.setItem("cfa_cart", JSON.stringify(cart)); } catch(e) {} }
+function money(n){ return "$" + (Number.isInteger(n) ? n : n.toFixed(2)); }
+function addToCart(p, note){
+  const k = p.priceId + "|" + note, f = cart.find(i => i.k === k);
+  if (f) f.qty++; else cart.push({k, id:p.priceId, name:p.name, price:p.price, note, qty:1});
+  saveCart(); drawCart(); openCart(true);
+}
+function openCart(open){
+  $("drawer").classList.toggle("open", open); $("drawer").setAttribute("aria-hidden", open ? "false" : "true"); $("scrim").hidden = !open;
+}
+function totals(){
+  const n = cart.reduce((a,i) => a + i.qty, 0), r = SHIP[$("region").value];
+  const sub = cart.reduce((a,i) => a + i.qty * i.price, 0), ship = !n ? 0 : (r.freeOver && sub >= r.freeOver) ? 0 : r.first + r.extra * (n - 1);
+  return {n, sub, ship};
+}
+function drawCart(){
+  const box = $("items"); box.textContent = "";
+  if (!cart.length) { const e = document.createElement("p"); e.textContent = "Your cart is empty. Add a print to get started."; e.style.padding = "1rem 0"; box.appendChild(e); }
+  cart.forEach(i => {
+    const row = document.createElement("div"); row.className = "it";
+    const l = document.createElement("div"), b = document.createElement("b"); b.textContent = i.name; l.appendChild(b);
+    if (i.note) { const s = document.createElement("small"); s.textContent = i.note; l.appendChild(s); }
+    const q = document.createElement("div"); q.className = "qty";
+    [["\u2212",-1],["+",1]].forEach(([t,d],idx) => {
+      if (idx === 1) { const c = document.createElement("span"); c.textContent = i.qty; q.appendChild(c); }
+      const bt = document.createElement("button"); bt.type = "button"; bt.textContent = t; bt.setAttribute("aria-label", (d < 0 ? "Remove one " : "Add one ") + i.name);
+      bt.addEventListener("click", () => { i.qty += d; if (i.qty < 1) cart = cart.filter(x => x !== i); saveCart(); drawCart(); });
+      q.appendChild(bt);
+    });
+    l.appendChild(q);
+    const pr = document.createElement("div"); pr.textContent = money(i.price * i.qty);
+    row.appendChild(l); row.appendChild(pr); box.appendChild(row);
+  });
+  const t = totals();
+  $("csub").textContent = money(t.sub); $("cship").textContent = money(t.ship); $("ctot").textContent = money(t.sub + t.ship);
+  $("cartct").textContent = t.n; $("checkout").disabled = !t.n;
+  const us = $("region").value === "us", fo = SHIP.us.freeOver;
+  $("cship").textContent = t.n && t.ship === 0 ? "Free" : money(t.ship);
+  $("cnote").textContent = !us ? "Duties or import taxes in your country may be due on delivery."
+    : t.n && t.sub < fo ? "Add " + money(fo - t.sub) + " more for free US shipping." : "";
+}
+$("cartbtn").addEventListener("click", () => openCart(true));
+$("cclose").addEventListener("click", () => openCart(false));
+$("scrim").addEventListener("click", () => openCart(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") openCart(false); });
+$("region").addEventListener("change", drawCart);
+$("checkout").addEventListener("click", async () => {
+  const btn = $("checkout"); $("cerr").textContent = ""; btn.disabled = true; btn.textContent = "One moment...";
+  try {
+    const res = await fetch(WORKER_URL, { method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ region:$("region").value, items:cart.map(i => ({id:i.id, qty:i.qty, note:i.note, name:i.name})) }) });
+    const data = await res.json();
+    if (!res.ok || !data.url) throw new Error(data.error || "Checkout failed");
+    location.href = data.url;
+  } catch(e) {
+    $("cerr").textContent = "We couldn't start checkout. Please try again, or email " + STORE_EMAIL + " to order.";
+    btn.disabled = false; btn.textContent = "Checkout";
+  }
+});
+if (/[?&]paid=1/.test(location.search)) { cart = []; saveCart(); $("paid").hidden = false; }
+drawCart();
 
 document.getElementById("yr").textContent = new Date().getFullYear();
 </script>
