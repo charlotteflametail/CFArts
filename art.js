@@ -18,4 +18,4 @@ const ART = [
   { name:"Sea Turtle", tag:"Print · 8.5 × 11", price:20, priceId:"price_1Ucud2JlXCVynyVGQO69VEgs", img:"images/art/Sea Turtle.jpg", desc:"Older than the tides it rides, the turtle moves through sunlit shallows as if time had never asked it to hurry." },
   { name:"Into the Weeds", tag:"Print · 8.5 × 11", price:20, priceId:"price_1UdCbBJlXCVynyVGB69sLNUH", img:"images/art/Into the Weeds.jpg", desc:"Wild white daisies and lavender blooms tangle together in a dreamy twilight meadow, their sunny yellow centers glowing like tiny stars against the shadowy grass." },
   /* add more pieces here, one per line */
-  ];
+];
